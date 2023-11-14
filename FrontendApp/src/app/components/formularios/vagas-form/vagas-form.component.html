@@ -1,0 +1,22 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+    
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo" required>
+            <mat-option value="Normal">Normal</mat-option>
+            <mat-option value="Preferencial">Preferencial</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid">{{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/vagas">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  
+

@@ -1,0 +1,56 @@
+<mat-card>
+  <div class="box-btn-search">
+    <div class="button-box">
+      <button id="btn-cadastrar" mat-raised-button color="primary" routerLink="/cadastrar-veiculo">Cadastrar Veículo</button>
+    </div>
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label><mat-icon>search</mat-icon></mat-label>
+        <input matInput type="text" placeholder="Qual modelo está buscando?" (input)="search($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="carros" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Placa">
+      <th mat-header-cell *matHeaderCellDef> Placa </th>
+      <td mat-cell *matCellDef="let carros"> {{carros.placa}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Modelo">
+      <th mat-header-cell *matHeaderCellDef> Modelo </th>
+      <td mat-cell *matCellDef="let carros"> {{carros.modelo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Cor">
+      <th mat-header-cell *matHeaderCellDef> Cor </th>
+      <td mat-cell *matCellDef="let carros"> {{carros.cor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Proprietario">
+      <th mat-header-cell *matHeaderCellDef> Proprietário </th>
+      <td mat-cell *matCellDef="let carros"> {{ carros.nomeCliente }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Ações">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let carros" >
+        <button mat-raised-button color="primary" routerLink="/editar-veiculo/{{carros.placa}}" id="btn-editar">Editar</button>
+        <button mat-raised-button color="accent">Detalhes</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Excluir">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let carros">
+        <button mat-raised-button color="warn" (click)="OpenDialog(carros.placa, '200ms', '100ms')">Excluir</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+  </table>
+  <mat-paginator [length]="carros.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]" aria-label="">
+  </mat-paginator>
+</mat-card>

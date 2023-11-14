@@ -1,0 +1,38 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Matrícula</mat-label>
+          <input matInput placeholder="6 dígitos" type="text" formControlName="matricula" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Cargo</mat-label>
+          <mat-select formControlName="cargo" required>
+            <mat-option value="Gerente">Gerente</mat-option>
+            <mat-option value="Manobrista">Manobrista</mat-option>
+            <mat-option value="Recepcionista">Recepcionista</mat-option>
+            <mat-option value="Lavagem">Lavagem</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid">{{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/funcionarios">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  
+

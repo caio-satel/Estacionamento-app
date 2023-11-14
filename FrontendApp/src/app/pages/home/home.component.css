@@ -1,0 +1,14 @@
+span {
+    cursor: pointer;
+}
+
+mat-sidenav-content {
+    margin: 0px;
+    padding: 0px;
+}
+
+.sidenav-content {
+    height: 100vh;
+    display: flex;
+    /* border: 1px solid red; */
+}

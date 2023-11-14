@@ -1,0 +1,39 @@
+<mat-card>
+  <h1>{{ txtTitulo }}</h1>
+  <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>Placa</mat-label>
+        <input matInput placeholder="ABC1234" type="text" formControlName="placa" required/>
+      </mat-form-field>
+    </div>
+
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>Modelo</mat-label>
+        <input matInput type="text" formControlName="modelo" required/>
+      </mat-form-field>
+    </div>
+
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>Cor</mat-label>
+        <input matInput type="text" formControlName="cor" required/>
+      </mat-form-field>
+    </div>
+
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>Proprietário</mat-label>
+        <mat-select formControlName="cliente_cpf" required>
+          <mat-option *ngFor="let cliente of clientes" [value]="cliente.cpf">{{ cliente.nome }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="butto-box">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid"> {{ btnAcao }}</button>
+      <button type="button" mat-raised-button routerLink="/carros">Voltar</button>
+    </div>
+  </form>
+</mat-card>

@@ -1,0 +1,14 @@
+<mat-dialog-content *ngIf="vaga">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="vaga-p">Vaga</p>
+        <p>ID: {{vaga.vagaId}}</p>
+        <p>Situação: {{vaga.ocupada ? 'Ocupada' : 'Livre'}}</p>
+        <p>Tipo: {{vaga.tipo}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/vagas">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

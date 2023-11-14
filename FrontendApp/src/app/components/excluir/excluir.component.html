@@ -1,0 +1,14 @@
+<mat-dialog-content *ngIf="carro">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="veiculo-p">Veículo</p>
+        <p>Placa: {{carro.placa}}</p>
+        <p>Modelo: {{carro.modelo}}</p>
+        <p>Cor: {{carro.cor}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/carros">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

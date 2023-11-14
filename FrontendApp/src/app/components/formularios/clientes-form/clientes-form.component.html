@@ -1,0 +1,32 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>CPF</mat-label>
+          <input matInput placeholder="12345678991" type="text" formControlName="cpf" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" formControlName="nome" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Telefone</mat-label>
+          <input matInput placeholder="(41)9XXXXYYYY" type="text" formControlName="telefone" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid">{{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/clientes">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  
