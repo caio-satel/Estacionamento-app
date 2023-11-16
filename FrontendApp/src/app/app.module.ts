@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,6 +72,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { OcuparVagaComponent } from './components/dialog/ocupar-vaga/ocupar-vaga.component';
+import { TarifariosExcluirComponent } from './components/excluir/tarifarios-excluir/tarifarios-excluir.component';
+import { TarifariosFormComponent } from './components/formularios/tarifarios-form/tarifarios-form.component';
+import { TarifariosEditarComponent } from './components/editar/tarifarios-editar/tarifarios-editar.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +104,10 @@ import { MatSelectModule } from '@angular/material/select';
     FuncionariosFormComponent,
     VagasFormComponent,
     VagasExcluirComponent,
+    OcuparVagaComponent,
+    TarifariosExcluirComponent,
+    TarifariosFormComponent,
+    TarifariosEditarComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,7 +129,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule
   ],
   providers: [
     HttpClientModule,

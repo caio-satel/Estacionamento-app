@@ -3,6 +3,7 @@ import { Vaga } from 'src/app/Models/Vaga';
 import { VagasService } from 'src/app/services/Vaga/vagas.service';
 import { VagasExcluirComponent } from '../excluir/vagas-excluir/vagas-excluir.component';
 import { MatDialog } from '@angular/material/dialog';
+import { OcuparVagaComponent } from '../dialog/ocupar-vaga/ocupar-vaga.component';
 
 @Component({
   selector: 'app-vagas',
@@ -45,14 +46,26 @@ export class VagasComponent {
     window.location.reload();
   }
 
-  ocuparVaga(vaga: Vaga): void {
-    const placaCarro = vaga.carro_placa;
+  ocuparVaga(vagaId: number, placaCarro: string): void {
     // Chame o serviço para ocupar a vaga
-    this.vagasService.ocuparVaga(vaga.vagaId, placaCarro).subscribe(() => {
+    this.vagasService.ocuparVaga(vagaId, placaCarro).subscribe(() => {
       // Atualize a lista de vagas após ocupar a vaga
       this.carregarVagas();
     });
-    window.location.reload();
+  }
+
+  abrirDialogOcuparVaga(vagaId: number): void {
+    const dialogRef = this.dialog.open(OcuparVagaComponent, {
+      width: '300px',
+      height: '300px',
+      data: { vagaId: vagaId }
+    });
+
+    dialogRef.afterClosed().subscribe(placaCarro => {
+      if (placaCarro) {
+        this.ocuparVaga(vagaId, placaCarro);
+      }
+    });
   }
 
   OpenDialog(vagaId: number, enterAnimationDuration: string, exitAnimationDuration: string) {

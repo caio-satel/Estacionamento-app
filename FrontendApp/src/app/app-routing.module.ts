@@ -22,6 +22,8 @@ import { CarrosEditarComponent } from './components/editar/carros-editar/carros-
 import { ClientesEditarComponent } from './components/editar/clientes-editar/clientes-editar.component';
 import { FuncionariosFormComponent } from './components/formularios/funcionarios-form/funcionarios-form.component';
 import { VagasFormComponent } from './components/formularios/vagas-form/vagas-form.component';
+import { TarifariosFormComponent } from './components/formularios/tarifarios-form/tarifarios-form.component';
+import { TarifariosEditarComponent } from './components/editar/tarifarios-editar/tarifarios-editar.component';
 
 const routes: Routes = [
   {path: 'carros', component:CarrosComponent },
@@ -42,7 +44,11 @@ const routes: Routes = [
   {path: 'registros', component:RegistroEntradaSaidasComponent},
   {path: 'reservas', component:ReservasComponent},
   {path: 'servico-extra', component:ServicoExtrasComponent},
+
   {path: 'tarifarios', component:TarifariosComponent},
+  {path: 'cadastrar-tarifario', component:TarifariosFormComponent},
+  {path: 'editar-tarifario/:idTarifario', component:TarifariosEditarComponent},
+
   {path: 'tickets', component:TicketsComponent},
 
   {path: 'vagas', component:VagasComponent},

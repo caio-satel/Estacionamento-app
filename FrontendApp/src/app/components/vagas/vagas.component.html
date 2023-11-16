@@ -6,7 +6,7 @@
       <div class="input-box">
         <mat-form-field>
           <mat-label><mat-icon>search</mat-icon></mat-label>
-          <input matInput type="text" placeholder="Qual vaga está buscando?" (input)="search($event)">
+          <input matInput type="text" placeholder="Qual tipo de vaga está buscando?" (input)="search($event)">
         </mat-form-field>
       </div>
     </div>
@@ -38,7 +38,7 @@
         <td mat-cell *matCellDef="let vagas" >
           <button mat-raised-button color="primary" routerLink="/editar-vaga/{{vagas.vagaId}}">Editar</button>
           <button mat-raised-button color="accent" id="btn-liberar" (click)="liberarVaga(vagas)">Liberar Vaga</button>
-          <button mat-raised-button color="warn" (click)="ocuparVaga(vagas)">Ocupar Vaga</button>
+          <button mat-raised-button color="warn" id="btn-ocupar" (click)="abrirDialogOcuparVaga(vagas.vagaId)">Ocupar Vaga</button>
         </td>
       </ng-container>
   

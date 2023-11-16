@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Ocupar Vaga</h2>
+<div mat-dialog-content>
+  <p>Insira a placa do carro para ocupar a vaga:</p>
+  <mat-form-field>
+    <input matInput placeholder="Placa" [(ngModel)]="placaCarro">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onSubmitClick()">Ocupar Vaga</button>
+  <button mat-button (click)="onCancelClick()">Cancelar</button>
+</div>

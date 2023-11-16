@@ -45,8 +45,11 @@ export class VagasService {
   }
 
   ocuparVaga(vagaID: number, placaCarro: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('placaCarro', placaCarro);
+
     const url = `${this.apiUrl}/ocuparVaga/${vagaID}`;
-    return this.http.patch<Vaga>(url, {placaCarro}, httpOptions)
+    return this.http.patch<Vaga>(url, formData)
   }
 
   liberarVaga(vagaID: number): Observable<any> {
