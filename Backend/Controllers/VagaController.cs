@@ -121,20 +121,20 @@ public class VagaController : ControllerBase
 
         if (carroExistente == null)
         {
-            return NotFound("Carro não encontrado.");
+            return NotFound(new { mensagem = "Carro não encontrado."});
         }
 
         var vaga = await _dbContext.Vagas.FindAsync(VagaId);
 
         if (vaga == null)
         {
-            return NotFound("Vaga não encontrada.");
+            return NotFound(new { mensagem = "Vaga não encontrada."});
         }
 
         if (vaga.Ocupada == true && vaga.Carro_Placa == placaCarro)
         {
             // O carro já ocupa a vaga, não é necessário fazer nada
-            return Ok("A vaga já está ocupada pelo mesmo carro.");
+            return Ok(new {mensagem = "A vaga já está ocupada pelo mesmo carro."});
         }
 
         vaga.Ocupada = true;
@@ -145,11 +145,11 @@ public class VagaController : ControllerBase
         try
         {
             await _dbContext.SaveChangesAsync();
-            return Ok($"Vaga ocupada com sucesso pelo carro com placa {placaCarro}.");
+            return Ok(new {mensagem = $"Vaga ocupada com sucesso pelo carro de placa: {placaCarro}"});
         }
         catch (Exception)
         {
-            return StatusCode(500, "Erro ao alterar a ocupação da vaga.");
+            return StatusCode(500, new{ mensagem = "Erro ao alterar a ocupação da vaga."});
         }
     }
 

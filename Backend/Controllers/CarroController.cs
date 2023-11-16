@@ -125,7 +125,8 @@ public class CarroController : ControllerBase
         }
     }
 
-    [HttpPut("editar/{placa}")]
+    [HttpPut]
+    [Route("editar/{placa}")]
     public async Task<ActionResult> AtualizarCarro(string placa, [FromBody] Carro novoCarro)
     {
         if (_dbContext is null || _dbContext.Carros is null)

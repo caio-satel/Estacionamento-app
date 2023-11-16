@@ -33,9 +33,9 @@ public class TarifarioController : ControllerBase
         }
     }
 
-    [HttpPost()]
-    [Route("criarTarifario")]
-    public async Task<IActionResult> CriarTarifario([FromBody] Tarifario novoTarifario)
+    [HttpGet()]
+    [Route("buscar/{idTarifario}")]
+    public async Task<IActionResult> Buscar(int idTarifario)
     {
         if(_dbContext is null) 
             return NotFound();
@@ -43,18 +43,29 @@ public class TarifarioController : ControllerBase
         if(_dbContext.Tarifarios is null) 
             return NotFound();
 
+        var tarifario = await _dbContext.Tarifarios
+            .Where(t => t.IdTarifario == idTarifario)
+            .FirstOrDefaultAsync();
+
+        return Ok(tarifario);
+    }
+
+    [HttpPost()]
+    [Route("criarTarifario")]
+    public async Task<IActionResult> CriarTarifario(Tarifario novoTarifario)
+    {
+        if(_dbContext is null) 
+            return NotFound();
+
+        if(_dbContext.Tarifarios is null) 
+            return NotFound();
+
+        _dbContext.Tarifarios.Add(novoTarifario);
+
         try
         {
-            if (ModelState.IsValid)
-            {
-                _dbContext.Tarifarios.Add(novoTarifario);
-                await _dbContext.SaveChangesAsync();
-                return Ok("Tarifário criado com sucesso.");
-            }
-            else
-            {
-                return BadRequest("Dados inválidos para criar o tarifário.");
-            }
+            await _dbContext.SaveChangesAsync();
+            return Ok(new {mensagem = "Tarifário criado com sucesso."});
         }
         catch (Exception)
         {
@@ -64,7 +75,7 @@ public class TarifarioController : ControllerBase
 
     [HttpPut()]
     [Route("alterarTarifario/{IdTarifario}")]
-    public async Task<IActionResult> AlterarTarifario(int IdTarifario, [FromForm] float TarifaHora, [FromForm] float TarifaDiaria, [FromForm] float TarifaMensal)
+    public async Task<IActionResult> AlterarTarifario(int IdTarifario, Tarifario novoTarifario)
     {
         if(_dbContext is null) 
             return NotFound();
@@ -72,22 +83,20 @@ public class TarifarioController : ControllerBase
         if(_dbContext.Tarifarios is null) 
             return NotFound();
 
+        var tarifarioExistente = await _dbContext.Tarifarios.FindAsync(IdTarifario);
+
+        if (tarifarioExistente == null)
+        {
+            return NotFound("Tarifário não encontrado.");
+        }
+
+        tarifarioExistente.Tarifa_hora = novoTarifario.Tarifa_hora;
+        tarifarioExistente.Tarifa_diaria = novoTarifario.Tarifa_diaria;
+        tarifarioExistente.Tarifa_mensal = novoTarifario.Tarifa_mensal;
+
         try
         {
-            var tarifarioExistente = await _dbContext.Tarifarios.FindAsync(IdTarifario);
-
-            if (tarifarioExistente == null)
-            {
-                return NotFound("Tarifário não encontrado.");
-            }
-
-            tarifarioExistente.Tarifa_hora = TarifaHora;
-            tarifarioExistente.Tarifa_diaria = TarifaDiaria;
-            tarifarioExistente.Tarifa_mensal = TarifaMensal;
-
-            _dbContext.Entry(tarifarioExistente).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
-
             return Ok("Tarifário alterado com sucesso.");
         }
         catch (Exception)
