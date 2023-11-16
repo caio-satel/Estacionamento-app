@@ -1,0 +1,33 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+        
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Tárifa/Hora</mat-label>
+          <input matInput type="number" formControlName="Tarifa_hora" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Tárifa Diária</mat-label>
+          <input matInput type="number" formControlName="Tarifa_diaria" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Tárifa Mensal</mat-label>
+          <input matInput type="number" formControlName="Tarifa_mensal" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid">{{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/tarifarios">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  
+

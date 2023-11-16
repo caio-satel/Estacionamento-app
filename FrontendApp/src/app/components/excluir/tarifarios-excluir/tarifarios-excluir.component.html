@@ -1,0 +1,16 @@
+<mat-dialog-content *ngIf="tarifario">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="tarifario-p">Tarifário</p>
+        <p>ID: {{tarifario.idTarifario}}</p>
+        <p>Tafira/H: R$ {{tarifario.tarifa_hora}}</p>
+        <p>Tarifa Diária: R$ {{tarifario.tarifa_diaria}}</p>
+        <p>Tarifa Mensal: R$ {{tarifario.tarifa_mensal}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/tarifarios">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>
+
