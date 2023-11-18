@@ -29,6 +29,8 @@ import { VagasEditarComponent } from './components/editar/vagas-editar/vagas-edi
 import { ReservasFormComponent } from './components/formularios/reservas-form/reservas-form.component';
 import { ReservasExcluirComponent } from './components/excluir/reservas-excluir/reservas-excluir.component';
 import { ReservasEditarComponent } from './components/editar/reservas-editar/reservas-editar.component';
+import { CartoesFormComponent } from './components/formularios/cartoes-form/cartoes-form.component';
+import { CartoesEditarComponent } from './components/editar/cartoes-editar/cartoes-editar.component';
 
 const routes: Routes = [
   {path: 'carros', component:CarrosComponent },
@@ -40,6 +42,8 @@ const routes: Routes = [
   {path: 'editar-cliente/:cpf', component:ClientesEditarComponent},
 
   {path: 'cartao-acesso', component:CartaoAcessosComponent},
+  {path: 'cadastrar-cartao', component:CartoesFormComponent},
+  {path: 'editar-cartao/:idCartao', component:CartoesEditarComponent},
 
   {path: 'funcionarios', component:FuncionariosComponent},
   {path: 'cadastrar-funcionario', component:FuncionariosFormComponent},

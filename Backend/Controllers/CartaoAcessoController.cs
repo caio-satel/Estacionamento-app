@@ -42,6 +42,41 @@ public class CartaoAcessoController : ControllerBase
         return Ok(cartoesComCliente);
     }
 
+[HttpGet()]
+[Route("buscarCartaoAcesso/{idCartao}")]
+public async Task<ActionResult<CartaoAcesso>> BuscarCartaoAcesso(int idCartao)
+{
+    if (_dbContext is null)
+        return NotFound();
+
+    if (_dbContext.CartaoAcessos is null)
+        return NotFound();
+
+    if (_dbContext.Clientes is null)
+        return NotFound();
+
+    var cartao = await _dbContext.CartaoAcessos
+        .Where(c => c.IdCartao == idCartao)
+        .FirstOrDefaultAsync();
+
+    if (cartao is null)
+        return NotFound();
+
+    var cartaoComCliente = new
+    {
+        cartao.IdCartao,
+        cartao.DataValidade,
+        Cliente = new
+        {
+            _dbContext.Clientes.FirstOrDefault(cliente => cliente.Cpf == cartao.Cliente_Cpf)?.Nome,
+            Cpf = cartao.Cliente_Cpf
+        }
+    };
+
+    return Ok(cartaoComCliente);
+}
+
+
     [HttpGet()]
     [Route("listarCartoesVencidos")]
     public async Task<IActionResult> ListarCartoesVencidos()

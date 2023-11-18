@@ -1,0 +1,13 @@
+<mat-dialog-content *ngIf="cartao">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="cartao-p">Reserva</p>
+        <p>Validade: {{cartao.dataValidade}}</p>
+        <p>Cliente: {{cartao.cliente_cpf}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/cartao-acesso">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

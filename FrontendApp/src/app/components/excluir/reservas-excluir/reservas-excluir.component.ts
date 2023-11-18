@@ -10,7 +10,7 @@ import { ReservasService } from 'src/app/services/Reserva/reservas.service';
 })
 export class ReservasExcluirComponent {
   inputdata: any;
-  reserva!: Reserva
+  reserva!: Reserva;
   reservas: Reserva[] = [];
 
   constructor(private reservasService: ReservasService, @Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<ReservasExcluirComponent>) {}
