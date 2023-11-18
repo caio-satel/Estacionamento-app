@@ -62,6 +62,60 @@ public class ServicoExtraController : ControllerBase
     }
 
     [HttpGet()]
+[Route("buscarServico/{servicoId}")]
+public async Task<IActionResult> BuscarServico(int servicoId)
+{
+    if (_dbContext is null)
+        return NotFound();
+
+    if (_dbContext.ServicoExtras is null)
+        return NotFound();
+
+    if (_dbContext.Clientes is null)
+        return NotFound();
+
+    if (_dbContext.Carros is null)
+        return NotFound();
+
+    if (_dbContext.Funcionarios is null)
+        return NotFound();
+
+            var servico = await _dbContext.ServicoExtras.FindAsync(servicoId);
+
+        if (servico == null)
+        {
+            return NotFound("Serviço não encontrado.");
+        }
+
+        var resultado = new
+        {
+            servico.ServicoId,
+            servico.Descricao,
+            servico.Custo,
+            Carro = new
+            {
+                _dbContext.Carros.FirstOrDefault(carro => carro.Placa == servico.Carro_Placa)?.Modelo,
+                _dbContext.Carros.FirstOrDefault(carro => carro.Placa == servico.Carro_Placa)?.Placa,
+            },
+            Cliente = new {
+                _dbContext.Clientes.FirstOrDefault(cliente => cliente.Cpf == servico.Cliente_Cpf)?.Cpf,
+                _dbContext.Clientes.FirstOrDefault(cliente => cliente.Cpf == servico.Cliente_Cpf)?.Nome,
+            },
+            Funcionario = _dbContext.Funcionarios.FirstOrDefault(funcionario => funcionario.IdFuncionario == servico.Funcionario_Id)?.Nome,
+        };
+
+    try
+    {
+        return Ok(resultado);
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "Erro ao buscar o serviço.");
+    }
+}
+
+
+    [HttpGet()]
     [Route("listarServicoCliente/{cpf}")]
     public async Task<IActionResult> ListarServicoCliente(string cpf)
     {
@@ -145,17 +199,21 @@ public class ServicoExtraController : ControllerBase
 
     [HttpPut()]
     [Route("atualizarServico/{ServicoId}")]
-    public async Task<IActionResult> AtualizarServico([FromBody] ServicoExtra servicoAtualizado)
+    public async Task<IActionResult> AtualizarServico(int ServicoId, [FromBody] ServicoExtra servicoAtualizado)
     {
         if(_dbContext is null) 
         return NotFound();
 
         if(_dbContext.ServicoExtras is null) 
             return NotFound();
+
+                if(_dbContext.Carros is null) 
+            return NotFound();
         
-        try
-        {
-            var servicoExistente = await _dbContext.ServicoExtras.FindAsync(servicoAtualizado.ServicoId);
+                if(_dbContext.Funcionarios is null) 
+            return NotFound();
+
+            var servicoExistente = await _dbContext.ServicoExtras.FindAsync(ServicoId);
 
             if (servicoExistente == null)
             {
@@ -172,10 +230,29 @@ public class ServicoExtraController : ControllerBase
                 return BadRequest("O custo do serviço deve ser maior que zero.");
             }
 
+        // Verificar se o Funcionario_Id existe no banco de dados
+        var funcionarioExistente = await _dbContext.Funcionarios.FindAsync(servicoAtualizado.Funcionario_Id);
+        if (funcionarioExistente == null)
+        {
+            return BadRequest("Funcionário não encontrado.");
+        }
+
+        // Verificar se a Carro_Placa existe no banco de dados
+        var carroExistente = await _dbContext.Carros.FindAsync(servicoAtualizado.Carro_Placa);
+        if (carroExistente == null)
+        {
+            return BadRequest("Carro não encontrado.");
+        }
+
+            servicoExistente.Carro_Placa = servicoAtualizado.Carro_Placa;
             servicoExistente.Descricao = servicoAtualizado.Descricao;
             servicoExistente.Custo = servicoAtualizado.Custo;
+            servicoExistente.Funcionario_Id = servicoAtualizado.Funcionario_Id;
 
             _dbContext.Entry(servicoExistente).State = EntityState.Modified;
+
+        try
+        {
             await _dbContext.SaveChangesAsync();
 
             return Ok("Serviço atualizado com sucesso.");
