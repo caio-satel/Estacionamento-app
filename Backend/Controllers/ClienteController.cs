@@ -72,9 +72,9 @@ public class ClienteController : ControllerBase
         return CreatedAtAction(nameof(Buscar), new { cpf = cliente.Cpf }, novoCliente);
     }
 
-    [HttpPatch()]
-    [Route("mudarTelefone/{cpf}")]
-    public async Task<IActionResult> MudarTelefone(string cpf, [FromForm] string telefone)
+    [HttpPut()]
+    [Route("editar/{cpf}")]
+    public async Task<IActionResult> editarCliente(string cpf, Cliente novoCliente)
     {
         if(_dbContext is null) 
             return NotFound();
@@ -89,7 +89,10 @@ public class ClienteController : ControllerBase
             return NotFound("Cliente não encontrado.");
         }
 
-        cliente.Telefone = telefone;
+        cliente.Cpf = cliente.Cpf;
+        cliente.Nome = cliente.Nome;
+        cliente.Telefone = novoCliente.Telefone;
+        cliente.Carros = cliente.Carros;
 
         _dbContext.Entry(cliente).State = EntityState.Modified;
 
@@ -109,7 +112,7 @@ public class ClienteController : ControllerBase
             }
         }
 
-        return Ok("Telefone alterado com sucesso.");
+        return Ok();
     }
 
     [HttpDelete()]

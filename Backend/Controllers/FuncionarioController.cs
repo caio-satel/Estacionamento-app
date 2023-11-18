@@ -75,9 +75,9 @@ public class FuncionarioController : ControllerBase
         }
     }
 
-    [HttpPatch()]
-    [Route("alterarCargo/{matricula}")]
-    public async Task<IActionResult> AlterarCargo(string matricula, [FromForm] string novoCargo)
+    [HttpPut()]
+    [Route("editar/{matricula}")]
+    public async Task<IActionResult> editarFuncionario(string matricula, Funcionario novoFuncionario)
     {
         if(_dbContext is null) 
             return NotFound();
@@ -85,20 +85,23 @@ public class FuncionarioController : ControllerBase
         if(_dbContext.Funcionarios is null) 
             return NotFound();
 
+        var funcionario = await _dbContext.Funcionarios.FirstOrDefaultAsync(f => f.Matricula == matricula);
+
+        if (funcionario == null)
+        {
+            return NotFound("Funcionário não encontrado.");
+        }
+
+        funcionario.Cargo = novoFuncionario.Cargo;
+        funcionario.Matricula = funcionario.Matricula;
+        funcionario.Nome = funcionario.Nome;
+
+        _dbContext.Entry(funcionario).State = EntityState.Modified;
+
         try
         {
-            var funcionario = await _dbContext.Funcionarios.FirstOrDefaultAsync(f => f.Matricula == matricula);
-
-            if (funcionario == null)
-            {
-                return NotFound("Funcionário não encontrado.");
-            }
-
-            funcionario.Cargo = novoCargo;
-            _dbContext.Entry(funcionario).State = EntityState.Modified;
-
             await _dbContext.SaveChangesAsync();
-            return Ok("Cargo do funcionário alterado com sucesso.");
+            return Ok();
         }
         catch (Exception ex)
         {
