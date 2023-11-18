@@ -84,6 +84,9 @@ import { ReservasFormComponent } from './components/formularios/reservas-form/re
 import { CartoesFormComponent } from './components/formularios/cartoes-form/cartoes-form.component';
 import { CartoesEditarComponent } from './components/editar/cartoes-editar/cartoes-editar.component';
 import { CartoesExcluirComponent } from './components/excluir/cartoes-excluir/cartoes-excluir.component';
+import { ServicosFormComponent } from './components/formularios/servicos-form/servicos-form.component';
+import { ServicosEditarComponent } from './components/editar/servicos-editar/servicos-editar.component';
+import { ServicosExcluirComponent } from './components/excluir/servicos-excluir/servicos-excluir.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +127,9 @@ import { CartoesExcluirComponent } from './components/excluir/cartoes-excluir/ca
     CartoesFormComponent,
     CartoesEditarComponent,
     CartoesExcluirComponent,
+    ServicosFormComponent,
+    ServicosEditarComponent,
+    ServicosExcluirComponent,
   ],
   imports: [
     BrowserModule,

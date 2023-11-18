@@ -1,0 +1,16 @@
+<mat-dialog-content *ngIf="servico">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="servico-p">Serviço</p>
+        <p>Descrição: {{servico.descricao}}</p>
+        <p >Custo: {{servico.custo}}</p>
+        <p>Cliente: {{servico.cliente_cpf}}</p>
+        <p>Carro: {{servico.carro_placa}}</p>
+        <p>Funcionário: {{servico.funcionario_id}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/servico-extra">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

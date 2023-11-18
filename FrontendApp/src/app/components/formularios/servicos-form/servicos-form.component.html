@@ -1,0 +1,53 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input matInput type="text" formControlName="descricao" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Custo</mat-label>
+          <input matInput type="number" formControlName="custo" required/>
+        </mat-form-field>
+      </div>
+
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <mat-select formControlName="cliente_Cpf" required>
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente.cpf">{{ cliente.nome }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Carro</mat-label>
+          <mat-select formControlName="carro_Placa" required>
+            <mat-option *ngFor="let carro of carros" [value]="carro.placa">{{ carro.placa }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Funcionário</mat-label>
+          <mat-select formControlName="funcionario_Id" required>
+            <mat-option *ngFor="let funcionario of funcionarios" [value]="funcionario.idFuncionario">{{ funcionario.nome }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid">{{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/servico-extra">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  
+

@@ -27,10 +27,11 @@ import { TarifariosEditarComponent } from './components/editar/tarifarios-editar
 import { FuncionariosEditarComponent } from './components/editar/funcionarios-editar/funcionarios-editar.component';
 import { VagasEditarComponent } from './components/editar/vagas-editar/vagas-editar.component';
 import { ReservasFormComponent } from './components/formularios/reservas-form/reservas-form.component';
-import { ReservasExcluirComponent } from './components/excluir/reservas-excluir/reservas-excluir.component';
 import { ReservasEditarComponent } from './components/editar/reservas-editar/reservas-editar.component';
 import { CartoesFormComponent } from './components/formularios/cartoes-form/cartoes-form.component';
 import { CartoesEditarComponent } from './components/editar/cartoes-editar/cartoes-editar.component';
+import { ServicosFormComponent } from './components/formularios/servicos-form/servicos-form.component';
+import { ServicosEditarComponent } from './components/editar/servicos-editar/servicos-editar.component';
 
 const routes: Routes = [
   {path: 'carros', component:CarrosComponent },
@@ -58,6 +59,8 @@ const routes: Routes = [
   {path: 'editar-reserva/:reservaId', component:ReservasEditarComponent},
 
   {path: 'servico-extra', component:ServicoExtrasComponent},
+  {path: 'cadastrar-servico', component:ServicosFormComponent},
+  {path: 'editar-servico/:servicoId', component:ServicosEditarComponent},
 
   {path: 'tarifarios', component:TarifariosComponent},
   {path: 'cadastrar-tarifario', component:TarifariosFormComponent},
