@@ -1,0 +1,37 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Data</mat-label>
+          <input matInput type="datetime-local" formControlName="data_hora_reserva" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <mat-select formControlName="cliente_Cpf" required>
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente.cpf">{{ cliente.nome }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Vagas Livres</mat-label>
+          <mat-select formControlName="vaga_Id" required>
+            <mat-option *ngFor="let vaga of vagas" [value]="vaga.vagaId">{{ vaga.vagaId }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="button-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid">{{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/reservas">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  
+

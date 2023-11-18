@@ -35,9 +35,9 @@ export class ClientesService {
     return this.http.post<Cliente>(url, cliente, httpOptions);
   }
 
-  alterarTelefone(telefone: string, cliente: Cliente): Observable<any> {
-    const url = `${this.apiUrl}/alterarTelefone/${telefone}`;
-    return this.http.patch<Cliente>(url, cliente, httpOptions)
+  editarCliente(cpf: string, cliente: Cliente): Observable<any> {
+    const url = `${this.apiUrl}/editar/${cpf}`;
+    return this.http.put<Cliente>(url, cliente, httpOptions)
   }
 
   deletarCliente(cpf: string): Observable<any> {

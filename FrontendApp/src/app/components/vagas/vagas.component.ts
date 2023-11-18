@@ -4,6 +4,7 @@ import { VagasService } from 'src/app/services/Vaga/vagas.service';
 import { VagasExcluirComponent } from '../excluir/vagas-excluir/vagas-excluir.component';
 import { MatDialog } from '@angular/material/dialog';
 import { OcuparVagaComponent } from '../dialog/ocupar-vaga/ocupar-vaga.component';
+import { ReservasService } from 'src/app/services/Reserva/reservas.service';
 
 @Component({
   selector: 'app-vagas',
@@ -13,9 +14,9 @@ import { OcuparVagaComponent } from '../dialog/ocupar-vaga/ocupar-vaga.component
 export class VagasComponent {
   vagas: Vaga[] = [];
   vagaGeral: Vaga[] = [];
-  colunas = ['VagaID','Situação', 'Tipo', 'Placa', 'Ações', 'Excluir'];
+  colunas = ['VagaID', 'Situação', 'Tipo', 'Placa', 'Ações', 'Excluir'];
   
-  constructor(private vagasService : VagasService, public dialog : MatDialog) { }
+  constructor(private vagasService : VagasService, private reservasServices : ReservasService, public dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.carregarVagas();
@@ -40,7 +41,6 @@ export class VagasComponent {
   liberarVaga(vaga: Vaga): void {
     // Chame o serviço para liberar a vaga
     this.vagasService.liberarVaga(vaga.vagaId).subscribe(() => {
-      // Atualize a lista de vagas após liberar a vaga
       this.carregarVagas();
     });
     window.location.reload();

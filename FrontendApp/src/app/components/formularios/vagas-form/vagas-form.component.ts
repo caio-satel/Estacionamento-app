@@ -11,6 +11,7 @@ import { VagasService } from 'src/app/services/Vaga/vagas.service';
 })
 export class VagasFormComponent {
   formulario : any;
+  @Input() modoEdicao: boolean = false;
   @Input() btnAcao: string = 'Salvar';
   @Input() txtTitulo: string = 'Cadastrar Vaga';
   @Input() dadosVaga: Vaga | null = null;
@@ -24,10 +25,18 @@ export class VagasFormComponent {
   }
   
   enviarFormulario(): void {
-    const vaga : Vaga = this.formulario.value;
-    this.vagasServices.cadastrarVaga(vaga).subscribe(() => {
-      window.location.reload();
-    })
+    const vaga: Vaga = this.formulario.value;
+
+    if (this.modoEdicao && this.dadosVaga) {
+      const vagaId: number = this.dadosVaga.vagaId;
+      this.vagasServices.editarVaga(vagaId, vaga).subscribe(() => {
+
+      });
+    } else {
+      this.vagasServices.cadastrarVaga(vaga).subscribe(() => {
+
+      });
+    }
     this.router.navigate(['/vagas']);
-  } 
+}
 }

@@ -1,0 +1,14 @@
+<mat-dialog-content *ngIf="reserva">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="reserva-p">Reserva</p>
+        <p>Data: {{reserva.data_hora_reserva}}</p>
+        <p>Cliente: {{reserva['cliente']['nome']}}</p>
+        <p>Vaga: {{reserva['vaga']['vaga_Id']}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/reservas">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

@@ -57,9 +57,9 @@ export class VagasService {
     return this.http.patch<Vaga>(url, httpOptions)
   }
 
-  alterarTipo(vagaID: string, novoTipo: string): Observable<any> {
-    const url = `${this.apiUrl}/alterarPlaca/${vagaID}`;
-    return this.http.patch<Vaga>(url, novoTipo, httpOptions)
+  editarVaga(vagaId: number, novaVaga: Vaga): Observable<any> {
+    const url = `${this.apiUrl}/editar/${vagaId}`;
+    return this.http.put<Vaga>(url, novaVaga, httpOptions)
   }
 
   deletarVaga(vagaID: string): Observable<any> {

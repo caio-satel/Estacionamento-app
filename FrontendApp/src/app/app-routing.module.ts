@@ -24,6 +24,11 @@ import { FuncionariosFormComponent } from './components/formularios/funcionarios
 import { VagasFormComponent } from './components/formularios/vagas-form/vagas-form.component';
 import { TarifariosFormComponent } from './components/formularios/tarifarios-form/tarifarios-form.component';
 import { TarifariosEditarComponent } from './components/editar/tarifarios-editar/tarifarios-editar.component';
+import { FuncionariosEditarComponent } from './components/editar/funcionarios-editar/funcionarios-editar.component';
+import { VagasEditarComponent } from './components/editar/vagas-editar/vagas-editar.component';
+import { ReservasFormComponent } from './components/formularios/reservas-form/reservas-form.component';
+import { ReservasExcluirComponent } from './components/excluir/reservas-excluir/reservas-excluir.component';
+import { ReservasEditarComponent } from './components/editar/reservas-editar/reservas-editar.component';
 
 const routes: Routes = [
   {path: 'carros', component:CarrosComponent },
@@ -38,11 +43,16 @@ const routes: Routes = [
 
   {path: 'funcionarios', component:FuncionariosComponent},
   {path: 'cadastrar-funcionario', component:FuncionariosFormComponent},
+  {path: 'editar-funcionario/:matricula', component:FuncionariosEditarComponent},
 
   {path: 'contas', component:ContasComponent},
   {path: 'pagamentos', component:PagamentosComponent},
   {path: 'registros', component:RegistroEntradaSaidasComponent},
+
   {path: 'reservas', component:ReservasComponent},
+  {path: 'cadastrar-reserva', component:ReservasFormComponent},
+  {path: 'editar-reserva/:reservaId', component:ReservasEditarComponent},
+
   {path: 'servico-extra', component:ServicoExtrasComponent},
 
   {path: 'tarifarios', component:TarifariosComponent},
@@ -52,7 +62,8 @@ const routes: Routes = [
   {path: 'tickets', component:TicketsComponent},
 
   {path: 'vagas', component:VagasComponent},
-  {path: 'cadastrar-vaga', component:VagasFormComponent}
+  {path: 'cadastrar-vaga', component:VagasFormComponent},
+  {path: 'editar-vaga/:vagaId', component:VagasEditarComponent}
 ];
 
 @NgModule({

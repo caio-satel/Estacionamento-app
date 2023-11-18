@@ -34,9 +34,9 @@ export class FuncionarioService {
     return this.http.post<Funcionario>(url, funcionario, httpOptions);
   }
 
-  alterarCargo(matricula: string, novoFuncionario: Funcionario): Observable<any> {
-    const url = `${this.apiUrl}/alterarCargo/${matricula}`;
-    return this.http.patch<Funcionario>(url, novoFuncionario, httpOptions)
+  editarFuncionario(matricula: string, novoFuncionario: Funcionario): Observable<any> {
+    const url = `${this.apiUrl}/editar/${matricula}`;
+    return this.http.put<Funcionario>(url, novoFuncionario, httpOptions)
   }
 
   deletarFuncionario(matricula: string): Observable<any> {

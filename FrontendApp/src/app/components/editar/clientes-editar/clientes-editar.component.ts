@@ -10,10 +10,11 @@ import { ClientesService } from 'src/app/services/Cliente/clientes.service';
   styleUrls: ['./clientes-editar.component.css']
 })
 export class ClientesEditarComponent {
-  formulario: any;
+  formulario!: FormGroup;
   @Input() btnAcao: string = 'Editar';
   @Input() txtTitulo: string = 'Editar Cliente';
   cliente!: Cliente;
+
 
   constructor(private clientesService: ClientesService, private route: ActivatedRoute, public router : Router){}
 
@@ -30,14 +31,4 @@ export class ClientesEditarComponent {
       })
     })
   }
-
-  enviarFormulario(cliente : Cliente): void {
-    const cpf = this.cliente.cpf;
-
-    this.clientesService.alterarTelefone(cpf, cliente).subscribe((data) => { 
-
-    })
-
-    this.router.navigate(['/carros']);
-  } 
 }

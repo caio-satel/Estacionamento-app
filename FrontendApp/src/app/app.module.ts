@@ -76,6 +76,11 @@ import { OcuparVagaComponent } from './components/dialog/ocupar-vaga/ocupar-vaga
 import { TarifariosExcluirComponent } from './components/excluir/tarifarios-excluir/tarifarios-excluir.component';
 import { TarifariosFormComponent } from './components/formularios/tarifarios-form/tarifarios-form.component';
 import { TarifariosEditarComponent } from './components/editar/tarifarios-editar/tarifarios-editar.component';
+import { FuncionariosEditarComponent } from './components/editar/funcionarios-editar/funcionarios-editar.component';
+import { VagasEditarComponent } from './components/editar/vagas-editar/vagas-editar.component';
+import { ReservasExcluirComponent } from './components/excluir/reservas-excluir/reservas-excluir.component';
+import { ReservasEditarComponent } from './components/editar/reservas-editar/reservas-editar.component';
+import { ReservasFormComponent } from './components/formularios/reservas-form/reservas-form.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +113,11 @@ import { TarifariosEditarComponent } from './components/editar/tarifarios-editar
     TarifariosExcluirComponent,
     TarifariosFormComponent,
     TarifariosEditarComponent,
+    FuncionariosEditarComponent,
+    VagasEditarComponent,
+    ReservasExcluirComponent,
+    ReservasEditarComponent,
+    ReservasFormComponent,
   ],
   imports: [
     BrowserModule,
