@@ -154,51 +154,62 @@ public class VagaController : ControllerBase
     }
 
 
-    [HttpPatch()]
-    [Route("liberarVaga/{VagaId}")]
-    public async Task<IActionResult> LiberarVaga(int VagaId)
-    {
-        if(_dbContext is null) 
-            return NotFound();
+[HttpPatch()]
+[Route("liberarVaga/{VagaId}")]
+public async Task<IActionResult> LiberarVaga(int VagaId)
+{
+    if (_dbContext is null) 
+        return NotFound();
 
-        if(_dbContext.Vagas is null) 
+    if (_dbContext.Vagas is null) 
+        return NotFound();
+
+        if (_dbContext.Reservas is null)
             return NotFound();
 
         var vaga = await _dbContext.Vagas.FindAsync(VagaId);
 
-        if (vaga == null)
-        {
-            return NotFound("Vaga não encontrada.");
-        }
-
-        if (!vaga.Ocupada == true)
-        {
-            // A vaga já está livre, não é necessário fazer nada
-            return Ok("A vaga já está livre.");
-        }
-
-        // Remova a placa do carro da vaga e defina Ocupada como false
-        vaga.Ocupada = false;
-        vaga.Carro_Placa = null;
-
-        _dbContext.Entry(vaga).State = EntityState.Modified;
-
-        try
-        {
-            await _dbContext.SaveChangesAsync();
-            return Ok("Vaga liberada com sucesso.");
-        }
-        catch (Exception)
-        {
-            return StatusCode(500, "Erro ao liberar a vaga.");
-        }
+    if (vaga == null)
+    {
+        return NotFound("Vaga não encontrada.");
     }
 
+    if (vaga.Ocupada == false)
+    {
+        // A vaga já está livre, não é necessário fazer nada
+        return Ok("A vaga já está livre.");
+    }
+
+    // Verifica se há uma reserva para esta vaga
+    var reserva = await _dbContext.Reservas.FirstOrDefaultAsync(r => r.Vaga_Id == VagaId);
+
+    // Se houver uma reserva, remova-a
+    if (reserva != null)
+    {
+        _dbContext.Reservas.Remove(reserva);
+    }
+
+    // Remova a placa do carro da vaga e defina Ocupada como false
+    vaga.Ocupada = false;
+    vaga.Carro_Placa = null;
+
+    _dbContext.Entry(vaga).State = EntityState.Modified;
+
+    try
+    {
+        await _dbContext.SaveChangesAsync();
+        return Ok("Vaga liberada com sucesso.");
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "Erro ao liberar a vaga.");
+    }
+}
 
 
-    [HttpPatch()]
-    [Route("alterarTipo/{VagaId}")]
-    public async Task<IActionResult> AlterarTipo(int VagaId, [FromBody] string novoTipo)
+    [HttpPut()]
+    [Route("editar/{VagaId}")]
+    public async Task<IActionResult> editarVaga(int VagaId, Vaga novaVaga)
     {
         if(_dbContext is null) 
             return NotFound();
@@ -213,13 +224,16 @@ public class VagaController : ControllerBase
             return NotFound("Vaga não encontrada.");
         }
 
-        vaga.Tipo = novoTipo;
+        vaga.Tipo = novaVaga.Tipo;
+        vaga.Ocupada = vaga.Ocupada;
+        vaga.Carro_Placa = vaga.Carro_Placa;
+
         _dbContext.Entry(vaga).State = EntityState.Modified;
 
         try
         {
             await _dbContext.SaveChangesAsync();
-            return Ok("Tipo da vaga alterado com sucesso.");
+            return Ok();
         }
         catch (Exception)
         {
