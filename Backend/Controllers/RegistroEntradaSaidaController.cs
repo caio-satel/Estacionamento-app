@@ -26,6 +26,49 @@ public class RegistroEntradaSaidaController : ControllerBase
         return Ok(registros);
     }
 
+    [HttpGet("buscarRegistro/{registroId}")]
+public async Task<ActionResult<RegistroEntradaSaida>> BuscarRegistro(int registroId)
+{
+    if (_dbContext is null)
+        return NotFound();
+
+    if (_dbContext.RegistroEntradasSaidas is null)
+        return NotFound();
+
+    if (_dbContext.Vagas is null)
+        return NotFound();
+
+    try
+    {
+        var registro = await _dbContext.RegistroEntradasSaidas
+            .Where(r => r.RegistroId == registroId)
+            .Select(r => new
+            {
+                r.RegistroId,
+                r.DataEntrada,
+                r.DataSaida,
+                Vaga = new
+                {
+                    VagaId = r.Vaga_Id,
+                    _dbContext.Vagas.FirstOrDefault(v => v.VagaId == r.Vaga_Id).Ocupada,
+                },
+            })
+            .FirstOrDefaultAsync();
+
+        if (registro == null)
+        {
+            return NotFound($"Registro com registroId {registroId} não encontrado.");
+        }
+
+        return Ok(registro);
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "Erro ao buscar o registro.");
+    }
+}
+
+
     [HttpGet()]
     [Route("listarRegistrosCompletos")]
     public async Task<IActionResult> ListarRegistrosCompletos()
@@ -120,19 +163,20 @@ public class RegistroEntradaSaidaController : ControllerBase
         }
     }
 
-    [HttpPatch()]
-    [Route("registrarSaida/{VagaId}/{RegistroId}")]
-    public async Task<IActionResult> RegistrarSaida(int VagaId, int RegistroId)
+[HttpPut("registrarSaida/{VagaId}/{RegistroId}")]
+public async Task<IActionResult> RegistrarSaida(int VagaId, int RegistroId)
+{
+    if (_dbContext is null)
+        return NotFound();
+
+    if (_dbContext.RegistroEntradasSaidas is null)
+        return NotFound();
+
+    if (_dbContext.Vagas is null)
+        return NotFound();
+
+    try
     {
-        if(_dbContext is null) 
-            return NotFound();
-
-        if(_dbContext.RegistroEntradasSaidas is null) 
-            return NotFound();
-
-        if(_dbContext.Vagas is null) 
-            return NotFound();
-
         // Encontre o registro correspondente ao RegistroId
         var registroExistente = await _dbContext.RegistroEntradasSaidas.FindAsync(RegistroId);
 
@@ -160,7 +204,7 @@ public class RegistroEntradaSaidaController : ControllerBase
             return NotFound("Vaga não encontrada.");
         }
 
-        if (!vagaExistente.Ocupada == true)
+        if (vagaExistente.Ocupada == false)
         {
             return BadRequest("A vaga já está desocupada.");
         }
@@ -177,16 +221,16 @@ public class RegistroEntradaSaidaController : ControllerBase
 
         _dbContext.Entry(registroExistente).State = EntityState.Modified;
 
-        try
-        {
-            await _dbContext.SaveChangesAsync();
-            return Ok("Registro de saída atualizado com sucesso.");
-        }
-        catch (Exception)
-        {
-            return StatusCode(500, "Erro ao atualizar o registro de saída.");
-        }
+        await _dbContext.SaveChangesAsync();
+
+        return Ok("Registro de saída atualizado com sucesso.");
     }
+    catch (Exception)
+    {
+        return StatusCode(500, "Erro ao atualizar o registro de saída.");
+    }
+}
+
 
 
     [HttpDelete()]

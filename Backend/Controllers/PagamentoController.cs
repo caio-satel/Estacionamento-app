@@ -52,6 +52,53 @@ public class PagamentoController : ControllerBase
         }
     }
 
+[HttpGet("buscarPagamento/{idPagamento}")]
+public async Task<ActionResult<object>> BuscarPagamento(int idPagamento)
+{
+    if (_dbContext is null)
+        return NotFound();
+
+    if (_dbContext.Pagamentos is null)
+        return NotFound();
+
+    if (_dbContext.Contas is null)
+        return NotFound();
+
+    if (_dbContext.Tickets is null)
+        return NotFound();
+
+    try
+    {
+        var pagamento = await _dbContext.Pagamentos.FirstOrDefaultAsync(p => p.Codigo == idPagamento);
+
+        if (pagamento == null)
+        {
+            return NotFound($"Pagamento com idPagamento {idPagamento} não encontrado.");
+        }
+
+    var resultado = await _dbContext.Pagamentos
+    .Where(p => p.Codigo == idPagamento)
+    .Select(p => new
+    {
+        p.Codigo,
+        Data_hora_pagamento = DateTime.Now,
+        Ticket = new
+        {
+            ValorPago = _dbContext.Tickets.FirstOrDefault(t => t.Codigo == p.Codigo_Ticket).Total,
+        },
+        Cliente_Cpf = _dbContext.Contas.FirstOrDefault(c => c.IdConta == p.Conta_Id).Cliente_Cpf,
+    })
+    .FirstOrDefaultAsync();
+
+        return Ok(resultado);
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "Erro ao buscar o pagamento.");
+    }
+}
+
+
     [HttpPost()]
     [Route("registrarPagamento")]
     public async Task<ActionResult<Pagamento>> RegistrarPagamento([FromBody] Pagamento novoPagamento)
