@@ -93,6 +93,11 @@ import { ContasExcluirComponent } from './components/excluir/contas-excluir/cont
 import { RegistroEntradaSaidaFormComponent } from './components/formularios/registro-entrada-saida-form/registro-entrada-saida-form.component';
 import { RegistroEntradaSaidaEditarComponent } from './components/editar/registro-entrada-saida-editar/registro-entrada-saida-editar.component';
 import { RegistroEntradaSaidaExcluirComponent } from './components/excluir/registro-entrada-saida-excluir/registro-entrada-saida-excluir.component';
+import { PagamentoExcluirComponent } from './components/excluir/pagamento-excluir/pagamento-excluir.component';
+import { PagamentoEditarComponent } from './components/editar/pagamento-editar/pagamento-editar.component';
+import { TicketExcluirComponent } from './components/excluir/ticket-excluir/ticket-excluir.component';
+import { TicketFormComponent } from './components/formularios/ticket-form/ticket-form.component';
+import { TicketEditarComponent } from './components/editar/ticket-editar/ticket-editar.component';
 
 @NgModule({
   declarations: [
@@ -142,6 +147,11 @@ import { RegistroEntradaSaidaExcluirComponent } from './components/excluir/regis
     RegistroEntradaSaidaFormComponent,
     RegistroEntradaSaidaEditarComponent,
     RegistroEntradaSaidaExcluirComponent,
+    PagamentoExcluirComponent,
+    PagamentoEditarComponent,
+    TicketExcluirComponent,
+    TicketFormComponent,
+    TicketEditarComponent,
   ],
   imports: [
     BrowserModule,
