@@ -1,0 +1,26 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Total</mat-label>
+          <input matInput type="number" formControlName="total_gasto" required/>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Cliente</mat-label>
+          <mat-select formControlName="cliente_cpf" required>
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente.cpf">{{ cliente.nome }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="butto-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid"> {{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/contas">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  

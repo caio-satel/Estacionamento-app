@@ -1,1 +1,56 @@
-<p>registro-entrada-saidas works!</p>
+<mat-card>
+    <div class="box-btn-search">
+      <div class="button-box">
+        <button id="btn-cadastrar" mat-raised-button color="primary" routerLink="/cadastrar-registro">Cadastrar Registro</button>
+      </div>
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label><mat-icon>search</mat-icon></mat-label>
+          <input matInput type="text" placeholder="Qual modelo está buscando?" (input)="search($event)">
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <table mat-table [dataSource]="registros" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="Entrada">
+        <th mat-header-cell *matHeaderCellDef> Entrada </th>
+        <td mat-cell *matCellDef="let registros"> {{registros.dataEntrada | date:'dd/MM/yyyy HH:mm'}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Saida">
+        <th mat-header-cell *matHeaderCellDef> Saida </th>
+        <td mat-cell *matCellDef="let registros"> {{registros.dataSaida | date:'dd/MM/yyyy HH:mm'}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Placa">
+        <th mat-header-cell *matHeaderCellDef> Placa </th>
+        <td mat-cell *matCellDef="let registros"> {{registros.carro_Placa}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Vaga">
+        <th mat-header-cell *matHeaderCellDef> Vaga </th>
+        <td mat-cell *matCellDef="let registros"> {{ registros.vaga_Id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Ações">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let registros" >
+          <button mat-raised-button color="primary" routerLink="/editar-registro/{{registros.registroId}}" id="btn-editar">Editar</button>
+          <button mat-raised-button color="accent">Detalhes</button>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Excluir">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let registros">
+          <button mat-raised-button color="warn" (click)="OpenDialog(registros.registroId, '200ms', '100ms')">Excluir</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+    </table>
+    <mat-paginator [length]="registros.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]" aria-label="">
+    </mat-paginator>
+  </mat-card>

@@ -1,0 +1,13 @@
+<mat-dialog-content *ngIf="conta">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="conta-p">Conta</p>
+        <p>Total: {{conta.total_gasto}}</p>
+        <p>Cliente: {{conta.cliente_cpf}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/contas">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

@@ -1,0 +1,29 @@
+<mat-card>
+    <h1>{{ txtTitulo }}</h1>
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+ 
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Carro</mat-label>
+          <mat-select formControlName="carro_Placa" required>
+            <mat-option *ngFor="let carro of carros" [value]="carro.placa">{{ carro.placa }} / {{ carro.modelo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Vaga</mat-label>
+          <mat-select formControlName="vaga_Id" required>
+            <mat-option *ngFor="let vaga of vagas" [value]="vaga.vagaId">{{ vaga.vagaId }} / {{vaga.tipo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="butto-box">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formulario.valid"> {{ btnAcao }}</button>
+        <button type="button" mat-raised-button routerLink="/registros">Voltar</button>
+      </div>
+    </form>
+  </mat-card>
+  

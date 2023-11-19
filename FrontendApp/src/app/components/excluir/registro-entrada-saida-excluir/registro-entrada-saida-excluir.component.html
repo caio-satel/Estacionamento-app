@@ -1,0 +1,15 @@
+<mat-dialog-content *ngIf="registro">
+    <h2 mat-dialog-title>Deseja confirmar a exclusão?</h2>
+    <mat-dialog-content>
+        <p id="registro-p">Registro</p>
+        <p>Entrada: {{registro.dataEntrada | date:'dd/MM/yyyy HH:mm'}}</p>
+        <p>Saida: {{registro.dataSaida | date:'dd/MM/yyyy HH:mm'}}</p>
+        <p>Placa: {{registro.carro_placa}}</p>
+        <p>Vaga: {{registro.vaga_id}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="button-box">
+        <button mat-raised-button  color="warn" mat-dialog-close (click)="Excluir()">Confirmar</button>
+        <button mat-raised-button color="raised" mat-dialog-close routerLink="/registros">Cancelar</button>
+    </mat-dialog-actions>
+</mat-dialog-content>

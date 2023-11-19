@@ -32,6 +32,10 @@ import { CartoesFormComponent } from './components/formularios/cartoes-form/cart
 import { CartoesEditarComponent } from './components/editar/cartoes-editar/cartoes-editar.component';
 import { ServicosFormComponent } from './components/formularios/servicos-form/servicos-form.component';
 import { ServicosEditarComponent } from './components/editar/servicos-editar/servicos-editar.component';
+import { ContasFormComponent } from './components/formularios/contas-form/contas-form.component';
+import { ContasEditarComponent } from './components/editar/contas-editar/contas-editar.component';
+import { RegistroEntradaSaidaFormComponent } from './components/formularios/registro-entrada-saida-form/registro-entrada-saida-form.component';
+import { RegistroEntradaSaidaEditarComponent } from './components/editar/registro-entrada-saida-editar/registro-entrada-saida-editar.component';
 
 const routes: Routes = [
   {path: 'carros', component:CarrosComponent },
@@ -51,8 +55,8 @@ const routes: Routes = [
   {path: 'editar-funcionario/:matricula', component:FuncionariosEditarComponent},
 
   {path: 'contas', component:ContasComponent},
-  {path: 'pagamentos', component:PagamentosComponent},
-  {path: 'registros', component:RegistroEntradaSaidasComponent},
+  {path: 'cadastrar-conta', component:ContasFormComponent},
+  {path: 'editar-conta/:contaId', component:ContasEditarComponent},
 
   {path: 'reservas', component:ReservasComponent},
   {path: 'cadastrar-reserva', component:ReservasFormComponent},
@@ -66,11 +70,21 @@ const routes: Routes = [
   {path: 'cadastrar-tarifario', component:TarifariosFormComponent},
   {path: 'editar-tarifario/:idTarifario', component:TarifariosEditarComponent},
 
-  {path: 'tickets', component:TicketsComponent},
-
   {path: 'vagas', component:VagasComponent},
   {path: 'cadastrar-vaga', component:VagasFormComponent},
-  {path: 'editar-vaga/:vagaId', component:VagasEditarComponent}
+  {path: 'editar-vaga/:vagaId', component:VagasEditarComponent},
+
+  {path: 'pagamentos', component:PagamentosComponent},
+  {path: 'cadastrar-pagamento', component:VagasFormComponent},
+  {path: 'editar-pagamento/:idPagamento', component:VagasEditarComponent},
+
+  {path: 'registros', component:RegistroEntradaSaidasComponent},
+  {path: 'cadastrar-registro', component:RegistroEntradaSaidaFormComponent},
+  {path: 'editar-registro/:registroId', component:RegistroEntradaSaidaEditarComponent},
+
+  {path: 'tickets', component:TicketsComponent},
+  {path: 'cadastrar-ticket', component:VagasFormComponent},
+  {path: 'editar-ticket/:idTicket', component:VagasEditarComponent},
 ];
 
 @NgModule({

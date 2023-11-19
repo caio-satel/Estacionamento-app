@@ -87,6 +87,12 @@ import { CartoesExcluirComponent } from './components/excluir/cartoes-excluir/ca
 import { ServicosFormComponent } from './components/formularios/servicos-form/servicos-form.component';
 import { ServicosEditarComponent } from './components/editar/servicos-editar/servicos-editar.component';
 import { ServicosExcluirComponent } from './components/excluir/servicos-excluir/servicos-excluir.component';
+import { ContasFormComponent } from './components/formularios/contas-form/contas-form.component';
+import { ContasEditarComponent } from './components/editar/contas-editar/contas-editar.component';
+import { ContasExcluirComponent } from './components/excluir/contas-excluir/contas-excluir.component';
+import { RegistroEntradaSaidaFormComponent } from './components/formularios/registro-entrada-saida-form/registro-entrada-saida-form.component';
+import { RegistroEntradaSaidaEditarComponent } from './components/editar/registro-entrada-saida-editar/registro-entrada-saida-editar.component';
+import { RegistroEntradaSaidaExcluirComponent } from './components/excluir/registro-entrada-saida-excluir/registro-entrada-saida-excluir.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +136,12 @@ import { ServicosExcluirComponent } from './components/excluir/servicos-excluir/
     ServicosFormComponent,
     ServicosEditarComponent,
     ServicosExcluirComponent,
+    ContasFormComponent,
+    ContasEditarComponent,
+    ContasExcluirComponent,
+    RegistroEntradaSaidaFormComponent,
+    RegistroEntradaSaidaEditarComponent,
+    RegistroEntradaSaidaExcluirComponent,
   ],
   imports: [
     BrowserModule,

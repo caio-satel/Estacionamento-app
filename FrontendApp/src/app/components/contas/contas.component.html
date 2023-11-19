@@ -1,1 +1,46 @@
-<p>contas works!</p>
+<mat-card>
+    <div class="box-btn-search">
+      <div class="button-box">
+        <button id="btn-cadastrar" mat-raised-button color="primary" routerLink="/cadastrar-conta">Cadastrar Conta</button>
+      </div>
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label><mat-icon>search</mat-icon></mat-label>
+          <input matInput type="text" placeholder="Qual conta está buscando?" (input)="search($event)">
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <table mat-table [dataSource]="contas" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let contas"> R$ {{contas.total_gasto}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Cliente">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let contas"> {{contas.cliente.nome}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Ações">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let contas" >
+          <button mat-raised-button color="primary" routerLink="/editar-conta/{{contas.idConta}}" id="btn-editar">Editar</button>
+          <button mat-raised-button color="accent">Detalhes</button>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Excluir">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let contas">
+          <button mat-raised-button color="warn" (click)="OpenDialog(contas.idConta, '200ms', '100ms')">Excluir</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+    </table>
+    <mat-paginator [length]="contas.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]" aria-label="">
+    </mat-paginator>
+  </mat-card>

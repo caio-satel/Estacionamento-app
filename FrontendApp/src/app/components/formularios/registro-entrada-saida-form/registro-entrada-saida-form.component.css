@@ -1,3 +1,9 @@
+h1 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
 mat-card {
     display: flex;
     width: 85vw;
@@ -48,10 +54,6 @@ mat-form-field {
     margin-top: 20px;
 }
 
-.mdc-data-table__table {
-    min-width: 90%;
-}
-
-#btn-editar {
-    margin-right: 8px;
+.mat-mdc-raised-button {
+    margin: 8px 8px 8px 8px;
 }
