@@ -19,6 +19,7 @@ export class ClientesFormComponent {
   constructor(private clientesServices : ClientesService, private router : Router) { }
 
   ngOnInit(): void {
+    //Forçar a conversão para um tipo boolean
     this.modoEdicao = !!this.dadosCliente;
 
     this.formulario = new FormGroup({

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Carro } from 'src/app/Models/Carro';
 import { CarrosService } from 'src/app/services/Carro/carros.service';
@@ -12,26 +11,18 @@ import { CarrosService } from 'src/app/services/Carro/carros.service';
 export class CarrosEditarComponent implements OnInit{
   @Input() btnAcao: string = 'Editar';
   @Input() txtTitulo: string = 'Editar Veículo';
+  //Indica que a propriedade carro irá ser inicializada posteriormente com o Carro que irá ser buscado no DB
   carro!: Carro;
-  formulario!: FormGroup;
 
+  //Injeção de dependencia: private route: ActivatedRoute - serve para poder ter acesso aos parametros passados pela URL nesse caso a placa do carro
   constructor(private carrosService: CarrosService, private route: ActivatedRoute, public router : Router){}
 
   ngOnInit(): void {
+    //Obtém o parametro placa da URL e armazena como string na constante
     const placa = String(this.route.snapshot.paramMap.get('placa'));
 
     this.carrosService.buscarCarro(placa).subscribe((data) => {
       this.carro = data;
-
-      console.log(data);
-
-      this.formulario = new FormGroup({
-        placa: new FormControl(this.carro?.placa, [Validators.required]),
-        modelo: new FormControl(this.carro?.modelo, [Validators.required]),
-        cor: new FormControl(this.carro?.cor, [Validators.required]),
-        nomeCliente: new FormControl(this.carro?.nomeCliente, [Validators.required]),
-      })
     })
   }
-
 }

@@ -28,9 +28,12 @@ export class ClientesComponent implements OnInit{
   }
 
   search(event : Event){
+    //Recebe um evento de INPUT
     const target = event.target as HTMLInputElement;
+    //Transforma o value em string (todos caracteres minusculos)
     const value = target.value.toLowerCase();
 
+    //Filtra os clientes com base no valor inserido no input, atualizando a lista de clientes
     this.clientes = this.clienteGeral?.filter(Cliente => {
       return Cliente.nome.toLowerCase().includes(value);
     })

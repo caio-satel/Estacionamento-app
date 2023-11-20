@@ -3,8 +3,8 @@
     <mat-dialog-content>
         <p id="reserva-p">Reserva</p>
         <p>Data: {{reserva.data_hora_reserva}}</p>
-        <p>Cliente: {{reserva['cliente']['nome']}}</p>
-        <p>Vaga: {{reserva['vaga']['vaga_Id']}}</p>
+        <p>Cliente: {{reserva.cliente_cpf}}</p>
+        <p>Vaga: {{reserva.vaga_id}}</p>
     </mat-dialog-content>
 
     <mat-dialog-actions class="button-box">

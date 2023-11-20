@@ -4,12 +4,15 @@ import { Observable } from 'rxjs';
 import { Carro } from '../../Models/Carro';
 import { environment } from 'src/environments/environment.development';
 
+//Configurando httpOptions para passar como argumento ao fazer a chamada HTTP, 
+//especifica que o conteudo da solicitação deve ser tratado como JSON
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type' : 'application/json'
   })
 }
 
+// Decoretor que permite a injeção desse serviço globalmente
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +20,12 @@ const httpOptions = {
 export class CarrosService {
   private apiUrl = `${environment.ApiUrl}/Carro`
 
+  // Garante que esses serviços possam fazer requisições HTTP,
+  // ao instanciar esses serviços (CarrosService), automaticamente injeta uma instancia de HttpClient também
   constructor(private http: HttpClient) { }
 
+  //Observable: um observador do 'conteudo' indentificando todas as mudanças realizadas,
+  //reage as mudanças de eventos e valores. Usado em operações async
   listarCarros(): Observable<Carro[]> {
     const url = `${this.apiUrl}/listar`;
     return this.http.get<Carro[]>(url);
@@ -51,6 +58,6 @@ export class CarrosService {
 
   deletarCarro(placa: string): Observable<any> {
     const url = `${this.apiUrl}/deletar/${placa}`;
-    return this.http.delete<Carro>(url, httpOptions);
+    return this.http.delete<Carro>(url);
   }
 }

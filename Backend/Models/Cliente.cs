@@ -13,9 +13,4 @@ public class Cliente
     public string? Telefone { get; set; }
     public ICollection<Carro>? Carros { get; set; }
 
-    public static implicit operator string(Cliente v)
-    {
-        throw new NotImplementedException();
-    }
-
 }

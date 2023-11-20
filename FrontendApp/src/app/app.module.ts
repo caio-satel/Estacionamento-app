@@ -41,22 +41,46 @@ import { ServicoExtrasComponent } from './components/servico-extras/servico-extr
 import { TarifariosComponent } from './components/tarifarios/tarifarios.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { VagasComponent } from './components/vagas/vagas.component';
+import { RegistroEntradaSaidaFormComponent } from './components/formularios/registro-entrada-saida-form/registro-entrada-saida-form.component';
 
 /* Forms */
 import { CarrosFormComponent } from './components/formularios/carros-form/carros-form.component';
 import { ClientesFormComponent } from './components/formularios/clientes-form/clientes-form.component';
 import { FuncionariosFormComponent } from './components/formularios/funcionarios-form/funcionarios-form.component';
 import { VagasFormComponent } from './components/formularios/vagas-form/vagas-form.component';
+import { TicketFormComponent } from './components/formularios/ticket-form/ticket-form.component';
+import { TarifariosFormComponent } from './components/formularios/tarifarios-form/tarifarios-form.component';
+import { ReservasFormComponent } from './components/formularios/reservas-form/reservas-form.component';
+import { CartoesFormComponent } from './components/formularios/cartoes-form/cartoes-form.component';
+import { ServicosFormComponent } from './components/formularios/servicos-form/servicos-form.component';
+import { ContasFormComponent } from './components/formularios/contas-form/contas-form.component';
 
 /* Edits */
 import { CarrosEditarComponent } from './components/editar/carros-editar/carros-editar.component';
 import { ClientesEditarComponent } from './components/editar/clientes-editar/clientes-editar.component';
+import { TarifariosEditarComponent } from './components/editar/tarifarios-editar/tarifarios-editar.component';
+import { FuncionariosEditarComponent } from './components/editar/funcionarios-editar/funcionarios-editar.component';
+import { VagasEditarComponent } from './components/editar/vagas-editar/vagas-editar.component';
+import { ReservasEditarComponent } from './components/editar/reservas-editar/reservas-editar.component';
+import { ServicosEditarComponent } from './components/editar/servicos-editar/servicos-editar.component';
+import { CartoesEditarComponent } from './components/editar/cartoes-editar/cartoes-editar.component';
+import { ContasEditarComponent } from './components/editar/contas-editar/contas-editar.component';
+import { RegistroEntradaSaidaEditarComponent } from './components/editar/registro-entrada-saida-editar/registro-entrada-saida-editar.component';
+import { TicketEditarComponent } from './components/editar/ticket-editar/ticket-editar.component';
 
 /* Delete */
 import { ExcluirComponent } from './components/excluir/excluir.component';
 import { ClientesExcluirComponent } from './components/excluir/clientes-excluir/clientes-excluir.component';
 import { VagasExcluirComponent } from './components/excluir/vagas-excluir/vagas-excluir.component';
 import { FuncionariosExcluirComponent } from './components/excluir/funcionarios-excluir/funcionarios-excluir.component';
+import { TarifariosExcluirComponent } from './components/excluir/tarifarios-excluir/tarifarios-excluir.component';
+import { ReservasExcluirComponent } from './components/excluir/reservas-excluir/reservas-excluir.component';
+import { CartoesExcluirComponent } from './components/excluir/cartoes-excluir/cartoes-excluir.component';
+import { ServicosExcluirComponent } from './components/excluir/servicos-excluir/servicos-excluir.component';
+import { ContasExcluirComponent } from './components/excluir/contas-excluir/contas-excluir.component';
+import { RegistroEntradaSaidaExcluirComponent } from './components/excluir/registro-entrada-saida-excluir/registro-entrada-saida-excluir.component';
+import { PagamentoExcluirComponent } from './components/excluir/pagamento-excluir/pagamento-excluir.component';
+import { TicketExcluirComponent } from './components/excluir/ticket-excluir/ticket-excluir.component';
 
 /* Angular Material */
 import { MatButtonModule } from '@angular/material/button';
@@ -73,31 +97,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { OcuparVagaComponent } from './components/dialog/ocupar-vaga/ocupar-vaga.component';
-import { TarifariosExcluirComponent } from './components/excluir/tarifarios-excluir/tarifarios-excluir.component';
-import { TarifariosFormComponent } from './components/formularios/tarifarios-form/tarifarios-form.component';
-import { TarifariosEditarComponent } from './components/editar/tarifarios-editar/tarifarios-editar.component';
-import { FuncionariosEditarComponent } from './components/editar/funcionarios-editar/funcionarios-editar.component';
-import { VagasEditarComponent } from './components/editar/vagas-editar/vagas-editar.component';
-import { ReservasExcluirComponent } from './components/excluir/reservas-excluir/reservas-excluir.component';
-import { ReservasEditarComponent } from './components/editar/reservas-editar/reservas-editar.component';
-import { ReservasFormComponent } from './components/formularios/reservas-form/reservas-form.component';
-import { CartoesFormComponent } from './components/formularios/cartoes-form/cartoes-form.component';
-import { CartoesEditarComponent } from './components/editar/cartoes-editar/cartoes-editar.component';
-import { CartoesExcluirComponent } from './components/excluir/cartoes-excluir/cartoes-excluir.component';
-import { ServicosFormComponent } from './components/formularios/servicos-form/servicos-form.component';
-import { ServicosEditarComponent } from './components/editar/servicos-editar/servicos-editar.component';
-import { ServicosExcluirComponent } from './components/excluir/servicos-excluir/servicos-excluir.component';
-import { ContasFormComponent } from './components/formularios/contas-form/contas-form.component';
-import { ContasEditarComponent } from './components/editar/contas-editar/contas-editar.component';
-import { ContasExcluirComponent } from './components/excluir/contas-excluir/contas-excluir.component';
-import { RegistroEntradaSaidaFormComponent } from './components/formularios/registro-entrada-saida-form/registro-entrada-saida-form.component';
-import { RegistroEntradaSaidaEditarComponent } from './components/editar/registro-entrada-saida-editar/registro-entrada-saida-editar.component';
-import { RegistroEntradaSaidaExcluirComponent } from './components/excluir/registro-entrada-saida-excluir/registro-entrada-saida-excluir.component';
-import { PagamentoExcluirComponent } from './components/excluir/pagamento-excluir/pagamento-excluir.component';
-import { PagamentoEditarComponent } from './components/editar/pagamento-editar/pagamento-editar.component';
-import { TicketExcluirComponent } from './components/excluir/ticket-excluir/ticket-excluir.component';
-import { TicketFormComponent } from './components/formularios/ticket-form/ticket-form.component';
-import { TicketEditarComponent } from './components/editar/ticket-editar/ticket-editar.component';
+import { PagamentosFormComponent } from './components/formularios/pagamentos-form/pagamentos-form.component';
+import { PagamentosEditarComponent } from './components/editar/pagamentos-editar/pagamentos-editar.component';
 
 @NgModule({
   declarations: [
@@ -148,10 +149,11 @@ import { TicketEditarComponent } from './components/editar/ticket-editar/ticket-
     RegistroEntradaSaidaEditarComponent,
     RegistroEntradaSaidaExcluirComponent,
     PagamentoExcluirComponent,
-    PagamentoEditarComponent,
     TicketExcluirComponent,
     TicketFormComponent,
     TicketEditarComponent,
+    PagamentosFormComponent,
+    PagamentosEditarComponent,
   ],
   imports: [
     BrowserModule,

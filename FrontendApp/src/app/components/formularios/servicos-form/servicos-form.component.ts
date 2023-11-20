@@ -23,7 +23,7 @@ export class ServicosFormComponent {
   funcionarios: Funcionario[] = [];
   @Input() modoEdicao: boolean = false;
   @Input() btnAcao: string = 'Salvar';
-  @Input() txtTitulo: string = 'Reservar Vaga';
+  @Input() txtTitulo: string = 'Registrar Serviço';
   @Input() dadosServico: ServicoExtra | null = null;
 
   constructor(

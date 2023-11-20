@@ -71,7 +71,7 @@ public class CarroController : ControllerBase
 
         if (carroComNomeCliente == null)
         {
-            return NotFound("Carro não encontrado.");
+            return NotFound(new {mensagem = "Carro não encontrado."});
         }
 
         return Ok(carroComNomeCliente);

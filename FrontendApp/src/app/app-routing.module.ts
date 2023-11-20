@@ -36,6 +36,10 @@ import { ContasFormComponent } from './components/formularios/contas-form/contas
 import { ContasEditarComponent } from './components/editar/contas-editar/contas-editar.component';
 import { RegistroEntradaSaidaFormComponent } from './components/formularios/registro-entrada-saida-form/registro-entrada-saida-form.component';
 import { RegistroEntradaSaidaEditarComponent } from './components/editar/registro-entrada-saida-editar/registro-entrada-saida-editar.component';
+import { PagamentosFormComponent } from './components/formularios/pagamentos-form/pagamentos-form.component';
+import { PagamentosEditarComponent } from './components/editar/pagamentos-editar/pagamentos-editar.component';
+import { TicketFormComponent } from './components/formularios/ticket-form/ticket-form.component';
+import { TicketEditarComponent } from './components/editar/ticket-editar/ticket-editar.component';
 
 const routes: Routes = [
   {path: 'carros', component:CarrosComponent },
@@ -75,16 +79,16 @@ const routes: Routes = [
   {path: 'editar-vaga/:vagaId', component:VagasEditarComponent},
 
   {path: 'pagamentos', component:PagamentosComponent},
-  {path: 'cadastrar-pagamento', component:VagasFormComponent},
-  {path: 'editar-pagamento/:idPagamento', component:VagasEditarComponent},
+  {path: 'cadastrar-pagamento', component:PagamentosFormComponent},
+  {path: 'editar-pagamento/:idPagamento', component:PagamentosEditarComponent},
 
   {path: 'registros', component:RegistroEntradaSaidasComponent},
   {path: 'cadastrar-registro', component:RegistroEntradaSaidaFormComponent},
   {path: 'editar-registro/:registroId', component:RegistroEntradaSaidaEditarComponent},
 
   {path: 'tickets', component:TicketsComponent},
-  {path: 'cadastrar-ticket', component:VagasFormComponent},
-  {path: 'editar-ticket/:idTicket', component:VagasEditarComponent},
+  {path: 'cadastrar-ticket', component:TicketFormComponent},
+  {path: 'editar-ticket/:idTicket', component:TicketEditarComponent},
 ];
 
 @NgModule({

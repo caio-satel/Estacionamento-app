@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Cliente } from 'src/app/Models/Cliente';
 import { ClientesService } from 'src/app/services/Cliente/clientes.service';
 
@@ -11,10 +10,10 @@ import { ClientesService } from 'src/app/services/Cliente/clientes.service';
 })
 export class ClientesExcluirComponent {
   inputdata: any;
-  cliente!: Cliente
+  cliente!: Cliente;
   clientes: Cliente[] = [];
 
-  constructor(private clientesServices: ClientesService, private router: Router, @Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<ClientesExcluirComponent>) {}
+  constructor(private clientesServices: ClientesService, @Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<ClientesExcluirComponent>) {}
 
   ngOnInit(): void {
     this.inputdata = this.data;
